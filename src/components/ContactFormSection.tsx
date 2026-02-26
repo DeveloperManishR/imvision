@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { api } from "@/lib/api";
 
 export function ContactFormSection() {
   const { t } = useTranslation();
@@ -15,6 +16,8 @@ export function ContactFormSection() {
     message: "",
     agreeToPrivacy: false,
   });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -34,10 +37,33 @@ export function ContactFormSection() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    setStatus("loading");
+    setErrorMessage("");
+    try {
+      await api.submitContact({
+        company: formData.company,
+        name: formData.name,
+        email: formData.email,
+        countryCode: formData.countryCode,
+        phone: formData.phone,
+        message: formData.message,
+      });
+      setStatus("success");
+      setFormData({
+        company: "",
+        name: "",
+        email: "",
+        countryCode: "+46",
+        phone: "",
+        message: "",
+        agreeToPrivacy: false,
+      });
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong");
+    }
   };
 
   const contactInfo = [
@@ -184,6 +210,16 @@ export function ContactFormSection() {
             viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
+              {status === "success" && (
+                <p className="text-[#2BCC07]" style={{ fontSize: "0.95rem" }}>
+                  Thank you. Your message has been sent.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="text-red-400" style={{ fontSize: "0.95rem" }}>
+                  {errorMessage}
+                </p>
+              )}
               {/* Company Name */}
               <div>
                 <label
@@ -883,8 +919,9 @@ export function ContactFormSection() {
               <div className="pt-4">
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={status === "loading"}
+                  whileHover={status === "loading" ? undefined : { scale: 1.02 }}
+                  whileTap={status === "loading" ? undefined : { scale: 0.98 }}
                   className="group relative inline-flex items-center gap-4 px-8 py-4 bg-black/40 backdrop-blur-sm overflow-hidden"
                   style={{
                     border: "2px solid rgba(43, 204, 7, 0.3)",

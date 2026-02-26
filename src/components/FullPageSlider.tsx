@@ -16,16 +16,17 @@ import {
 import { motion } from "motion/react";
 import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
+import { SlideIndicatorDots } from "@/components/SlideIndicator";
 
 const MOBILE_BREAKPOINT = 800;
-const BG_TRANSITION = { duration: 1.2, ease: [0.4, 0, 0.2, 1] };
+const BG_TRANSITION = { duration: 0.9, ease: [0.4, 0, 0.2, 1] };
 const CONTENT_TRANSITION = {
-  duration: 0.7,
-  delay: 0.36,
+  duration: 0.5,
+  delay: 0.3,
   ease: [0.4, 0, 0.2, 1],
 };
-const WHEEL_THROTTLE_MS = 200;
-const WHEEL_MIN_DELTA = 10;
+const WHEEL_THROTTLE_MS = 80;
+const WHEEL_MIN_DELTA = 5;
 const SWIPE_THRESHOLD = 50;
 const DEFAULT_CONTENT_SLIDE_HEIGHT_VH = 92;
 
@@ -51,13 +52,6 @@ export interface FullPageSliderProps {
   contentSlideHeightVh?: number;
   /** Optional slot above content (e.g. AnimatedBackground for sales) */
   topSlot?: ReactNode;
-  /** Optional fixed overlay (e.g. dot indicator). Rendered in a fixed position so it does not move with slides. */
-  fixedIndicator?: (ctx: {
-    activeIndex: number;
-    /** Matches activeIndex but updates after the slide transition (use for dot highlight). */
-    indicatorIndex: number;
-    totalSlides: number;
-  }) => ReactNode;
 }
 
 interface FullPageSliderContextValue {
@@ -136,7 +130,6 @@ export function FullPageSlider({
   heroImage,
   contactImage,
   contentSlideHeightVh = DEFAULT_CONTENT_SLIDE_HEIGHT_VH,
-  fixedIndicator,
 }: FullPageSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const lastScrollTime = useRef(0);
@@ -281,12 +274,16 @@ export function FullPageSlider({
           </motion.div>
         </div>
 
-        {/* Fixed indicator overlay - does not move with slides */}
-        {fixedIndicator?.({
-          activeIndex,
-          indicatorIndex,
-          totalSlides,
-        })}
+        {/* Fixed dot indicator - one per slide, desktop only; click to go to slide */}
+        <SlideIndicatorDots
+          count={totalSlides}
+          activeIndex={indicatorIndex}
+          onDotClick={(index) => {
+            setActiveIndex(index);
+            setIsAnimating(true);
+          }}
+          ariaLabel={`Slide ${indicatorIndex + 1} of ${totalSlides}`}
+        />
 
         {/* Content carousel */}
         <div className=" flex items-center justify-center overflow-hidden h-[calc(100vh-62px)]">

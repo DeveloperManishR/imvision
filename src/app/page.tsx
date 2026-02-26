@@ -1,7 +1,6 @@
 "use client";
 
 import { FullPageSlider } from "@/components/FullPageSlider";
-import { SlideIndicatorDots } from "@/components/SlideIndicator";
 import { HeroSection } from "@/components/HeroSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HomePortfolioIntro } from "@/components/HomePortfolioIntro";
@@ -63,34 +62,10 @@ export default function HomePage() {
     },
   ];
 
-  // Ranges in the full-page slider that show dot indicators (desktop). Other slides show nothing.
-  const INDICATOR_RANGES = [
-    { startIndex: 2, count: portfolioItems.length, label: "Portfolio" },
-    { startIndex: 6 + 1, count: whatWeDoServices.length, label: "What we do" }, // after header at 6
-  ] as const;
-
   return (
     <FullPageSlider
       heroImage={HERO_IMAGE}
       contactImage={CONTACT_IMAGE}
-      fixedIndicator={({ indicatorIndex }) => {
-        for (const range of INDICATOR_RANGES) {
-          if (
-            indicatorIndex >= range.startIndex &&
-            indicatorIndex < range.startIndex + range.count
-          ) {
-            const activeDotIndex = indicatorIndex - range.startIndex;
-            return (
-              <SlideIndicatorDots
-                count={range.count}
-                activeIndex={activeDotIndex}
-                ariaLabel={`${range.label} slide ${activeDotIndex + 1} of ${range.count}`}
-              />
-            );
-          }
-        }
-        return null;
-      }}
       slides={[
         {
           background: "hero",

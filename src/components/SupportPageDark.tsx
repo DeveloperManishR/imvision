@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle, Phone, Mail } from 'lucide-react';
 import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
 import { useTranslation } from '@/hooks/useTranslation';
+import { api } from '@/lib/api';
 
 interface FormData {
   contactName: string;
@@ -18,6 +19,7 @@ interface FormData {
 export function SupportPageDark() {
   const { t } = useTranslation();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     contactName: '',
     companyName: '',
@@ -38,21 +40,35 @@ export function SupportPageDark() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        contactName: '',
-        companyName: '',
-        email: '',
-        subject: '',
-        phone: '',
-        description: '',
-        file: null,
-      });
-    }, 3000);
+    setSubmitError(null);
+    const form = new FormData();
+    form.append("contactName", formData.contactName);
+    form.append("companyName", formData.companyName);
+    form.append("email", formData.email);
+    form.append("subject", formData.subject);
+    form.append("phone", formData.phone);
+    form.append("description", formData.description);
+    if (formData.file) form.append("files", formData.file);
+    try {
+      await api.submitSupport(form);
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          contactName: '',
+          companyName: '',
+          email: '',
+          subject: '',
+          phone: '',
+          description: '',
+          file: null,
+        });
+      }, 3000);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Failed to submit ticket");
+    }
   };
 
   return (
@@ -167,6 +183,12 @@ export function SupportPageDark() {
               >
                 {t.support.ticket.description}
               </p>
+
+              {submitError && (
+                <p className="text-red-400 mb-4" style={{ fontSize: '0.95rem' }}>
+                  {submitError}
+                </p>
+              )}
 
               {/* Form Content */}
               <form onSubmit={handleSubmit}>

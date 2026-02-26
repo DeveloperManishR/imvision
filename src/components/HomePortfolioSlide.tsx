@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
-import { SlideIndicatorNumber } from "@/components/SlideIndicator";
 
 export interface HomePortfolioItem {
   title: string;
@@ -35,10 +34,6 @@ export function HomePortfolioSlide({ item, index }: HomePortfolioSlideProps) {
       ) : (
         <div className="absolute inset-0 bg-black" />
       )}
-      {/* Slide number (mobile only; desktop uses fixed dot indicator) */}
-      <div className="absolute top-6 right-6">
-        <SlideIndicatorNumber index={index} showOnlyOnMobile variant="default" />
-      </div>
       {/* Content - bottom left: category + title */}
       <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-12 flex flex-col justify-end">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
