@@ -261,7 +261,7 @@ export function ServicesSectionHeader({ serviceData }) {
             className="tracking-[0.3em] uppercase text-[#2BCC07]"
             style={{ fontSize: "0.875rem", fontWeight: 400 }}
           >
-            {serviceData?.highlightTitle?.[language]}
+            {serviceData?.highlightParagraphTwoTitle?.[language]}
           </p>
         </div>
         <h2
