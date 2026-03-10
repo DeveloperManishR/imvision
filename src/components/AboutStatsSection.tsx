@@ -267,11 +267,13 @@ export function AboutStatsSection({
               viewport={{ once: true }}
               className="relative aspect-[4/3] overflow-hidden rounded-2xl"
             >
-              <ImageWithFallback
-                src={`${process.env.NEXT_PUBLIC_IMAGE_VIDEO_URL}/${currentTabsData[activeTab||0]?.image}`}
-                alt="LED Billboard on Busy City Street"
-                className="w-full h-full object-cover"
-              />
+             {currentTabsData[activeTab ?? 0]?.image ? (
+  <ImageWithFallback
+    src={`${process.env.NEXT_PUBLIC_IMAGE_VIDEO_URL}/${currentTabsData[activeTab ?? 0]?.image}`}
+    alt="LED Billboard on Busy City Street"
+    className="w-full h-full object-cover"
+  />
+) : null}
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </motion.div>
           </div>
