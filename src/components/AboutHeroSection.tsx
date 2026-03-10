@@ -11,6 +11,7 @@ interface AboutHeroSectionProps {
   backgroundY?: string;
   transition?: { duration: number; ease: string };
   part?: Part;
+  aboutData:any
 }
 
 export function AboutHeroSection({

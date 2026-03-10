@@ -6,6 +6,7 @@ import { ContactSection } from "@/components/ContactSection";
 import { FullPageSlider } from "@/components/FullPageSlider";
 import { useTranslation } from "@/hooks/useTranslation";
 import { withoutAuthAxios } from "@/lib/config";
+import { AboutDataInterface } from "@/lib/interface";
 import { useQuery } from "@tanstack/react-query";
 
 const HERO_IMAGE =
@@ -20,7 +21,10 @@ const fetchAbout = async () => {
 
 export default function AboutPage() {
     const { t,language } = useTranslation();
-  const { data: aboutData = [], isLoading: casesLoading } = useQuery({
+  const {
+    data: aboutData,
+    isLoading: casesLoading,
+  } = useQuery<AboutDataInterface>({
     queryKey: ["about"],
     queryFn: fetchAbout,
   });
@@ -28,7 +32,7 @@ export default function AboutPage() {
   console.log("aboutDataaboutData",aboutData)
 
   return (
-    <FullPageSlider
+     <FullPageSlider
       heroImage={HERO_IMAGE}
       contactImage={CONTACT_IMAGE}
       contentSlideHeightVh={90}

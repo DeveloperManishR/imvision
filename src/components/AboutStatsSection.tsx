@@ -16,6 +16,7 @@ interface AboutStatsSectionProps {
   backgroundY?: string;
   transition?: { duration: number; ease: string };
   part?: Part;
+  aboutData:any
 }
 
 export function AboutStatsSection({
