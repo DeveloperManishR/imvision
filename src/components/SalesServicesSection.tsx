@@ -4,16 +4,7 @@ import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 
-interface Service {
-  id: number;
-  number: string;
-  title: string;
-  description: string;
-  features: string[];
-  image: string;
-}
-
-const SERVICE_IMAGES = [
+const FALLBACK_IMAGES = [
   "https://images.unsplash.com/photo-1441986300917-64674bd600d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
   "https://images.unsplash.com/photo-1763671727638-5bc55bb9c980?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
   "https://images.unsplash.com/photo-1497366216548-37526070297c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
@@ -22,15 +13,41 @@ const SERVICE_IMAGES = [
   "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
 ];
 
-function useSalesServices(): Service[] {
-    const { t,language } = useTranslation();
-  return t.sales.servicesList.map((item, i) => ({
-    id: i + 1,
+interface RawService {
+  _id: string;
+  title: { en: string; sv: string };
+  description: { en: string; sv: string };
+  features: Array<{ en: string; sv: string; _id?: string }>;
+  image?: string;
+}
+
+interface Service {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  features: string[];
+  image: string;
+}
+
+function useNormalizedServices(saleData: any): Service[] {
+  const { language } = useTranslation();
+
+  const rawList: RawService[] = saleData?.servicesList ?? [];
+
+  return rawList.map((item, i) => ({
+    id: item._id ?? String(i),
     number: String(i + 1).padStart(2, "0"),
-    title: item.title,
-    description: item.description,
-    features: item.features,
-    image: SERVICE_IMAGES[i],
+    title: item.title?.[language] ?? item.title?.en ?? "",
+    description: item.description?.[language] ?? item.description?.en ?? "",
+    features: (item.features ?? []).map(
+      (f) => f[language] ?? f.en ?? ""
+    ),
+    // Use the image from the API if it's a real URL, otherwise fall back
+    image:
+      item.image && item.image.startsWith("https://images.unsplash")
+        ? item.image
+        : FALLBACK_IMAGES[i % FALLBACK_IMAGES.length],
   }));
 }
 
@@ -42,14 +59,7 @@ function ServiceSection({
   index: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-    const { t,language } = useTranslation();
-  // const { scrollYProgress } = useScroll({
-  //   target: containerRef,
-  //   offset: ["start end", "end start"],
-  // });
-
-  // const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  // const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const { t } = useTranslation();
 
   const isEven = index % 2 === 0;
 
@@ -65,11 +75,11 @@ function ServiceSection({
             viewport={{ once: true }}
             className={`lg:w-1/2 relative ${isEven ? "lg:order-1" : "lg:order-2"}`}
           >
-            <div className="relative  overflow-hidden max-h-[140px] md:max-h-[320px]">
+            <div className="relative overflow-hidden max-h-[140px] md:max-h-[320px]">
               <motion.img
                 src={service.image}
                 alt={service.title}
-                className="w-full h-auto object-cover "
+                className="w-full h-auto object-cover"
                 whileInView={{ scale: 1 }}
                 initial={{ scale: 1.15 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
@@ -77,7 +87,7 @@ function ServiceSection({
               />
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40" />
 
-              {/* Small number overlay */}
+              {/* Number overlay */}
               <div className="absolute top-6 right-6">
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -140,7 +150,7 @@ function ServiceSection({
               {service.description}
             </motion.p>
 
-            {/* Features - Compact 2 columns */}
+            {/* Features */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -174,7 +184,7 @@ function ServiceSection({
               </div>
             </motion.div>
 
-            {/* CTA - More compact */}
+            {/* CTA */}
             <motion.a
               href="/contact"
               initial={{ opacity: 0 }}
@@ -206,43 +216,42 @@ function ServiceSection({
   );
 }
 
-export const SalesServicesSection1 = () => {
-  const services = useSalesServices();
+// ─────────────────────────────────────────────
+// Dynamic section: renders a slice of services
+// ─────────────────────────────────────────────
+interface ServicesSectionProps {
+  saleData: any;
+  /** 0-based start index (inclusive) */
+  from: number;
+  /** 0-based end index (exclusive). Omit to render till end. */
+  to?: number;
+}
+
+export const SalesServicesSection = ({
+  saleData,
+  from,
+  to,
+}: ServicesSectionProps) => {
+  const services = useNormalizedServices(saleData);
+  const slice = services.slice(from, to);
+
   return (
-    <div className=" h-full flex flex-col items-center justify-center gap-10">
-      {services.slice(0, 2).map((service, index) => (
+    <div className="h-full flex flex-col items-center justify-center gap-10 mb-20 lg:mb-0">
+      {slice.map((service, index) => (
         <ServiceSection key={service.id} service={service} index={index} />
       ))}
     </div>
   );
 };
 
-export const SalesServicesSection2 = () => {
-  const services = useSalesServices();
-  return (
-    <div className=" lg:max-h-[90vh] h-full flex flex-col items-center justify-center gap-10">
-      {services.slice(2, 4).map((service, index) => (
-        <ServiceSection key={service.id} service={service} index={index} />
-      ))}
-    </div>
-  );
-};
-export const SalesServicesSection3 = () => {
-  const services = useSalesServices();
-  return (
-    <div className=" lg:max-h-[90vh] h-full flex flex-col items-center justify-center gap-10 mb-20 lg:mb-0">
-      {services.slice(4, 6).map((service, index) => (
-        <ServiceSection key={service.id} service={service} index={index} />
-      ))}
-    </div>
-  );
-};
+// ─────────────────────────────────────────────
+// Header
+// ─────────────────────────────────────────────
+export const SalesServicesHeader = ({ saleData }: { saleData: any }) => {
+  const { language } = useTranslation();
 
-export const SalesServicesHeader = ({saleData}) => {
-    const { t,language } = useTranslation();
   return (
     <div className="container mx-auto px-6 lg:px-24 pt-20 lg:pt-28 pb-12 lg:pb-20">
-      {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -262,9 +271,7 @@ export const SalesServicesHeader = ({saleData}) => {
             className="tracking-[0.3em] uppercase text-[#2BCC07]"
             style={{ fontSize: "0.875rem", fontWeight: 400 }}
           >
-            {/* {t.sales.servicesHeader.label} */}
-
-            {saleData?.servicesHeader?.label[language]}
+            {saleData?.servicesHeader?.label?.[language]}
           </p>
         </div>
         <h2
@@ -276,9 +283,25 @@ export const SalesServicesHeader = ({saleData}) => {
             lineHeight: 1.1,
           }}
         >
-                     {saleData?.servicesHeader?.title[language]}
+          {saleData?.servicesHeader?.title?.[language]}
         </h2>
       </motion.div>
     </div>
   );
 };
+
+// ─────────────────────────────────────────────
+// Helper hook exposed for the page to know
+// how many slides to generate
+// ─────────────────────────────────────────────
+export function useServicesSlides(saleData: any, itemsPerSlide = 2) {
+  const { language } = useTranslation();
+  const rawList: RawService[] = saleData?.servicesList ?? [];
+  const total = rawList.length;
+  const slideCount = Math.ceil(total / itemsPerSlide);
+
+  return Array.from({ length: slideCount }, (_, i) => ({
+    from: i * itemsPerSlide,
+    to: Math.min((i + 1) * itemsPerSlide, total),
+  }));
+}

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { handleImage } from "@/lib/config";
 
 interface UseCase {
   id: number;
@@ -33,7 +34,7 @@ function useSalesUseCases(): UseCase[] {
   }));
 }
 
-function UseCaseCard({ useCase, index }: { useCase: UseCase; index: number }) {
+function UseCaseCard({ useCase, index ,language}: { useCase: UseCase; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -61,7 +62,7 @@ function UseCaseCard({ useCase, index }: { useCase: UseCase; index: number }) {
         <div className="relative aspect-[16/8] lg:aspect-[16/9] overflow-hidden">
           <motion.div className="w-full h-full">
             <motion.img
-              src={useCase.image}
+              src={handleImage(useCase.image)}
               alt={useCase.title}
               className="w-full  object-cover h-full opacity-75"
               whileHover={{ scale: 1.05 }}
@@ -96,7 +97,7 @@ function UseCaseCard({ useCase, index }: { useCase: UseCase; index: number }) {
                     lineHeight: 1.2,
                   }}
                 >
-                  {useCase.title}
+                  {useCase.title[language]}
                 </h3>
               </div>
 
@@ -110,7 +111,7 @@ function UseCaseCard({ useCase, index }: { useCase: UseCase; index: number }) {
                     lineHeight: 1.7,
                   }}
                 >
-                  {useCase.description}
+                  {useCase.description[language]}
                 </p>
               </div>
 
@@ -124,9 +125,12 @@ function UseCaseCard({ useCase, index }: { useCase: UseCase; index: number }) {
   );
 }
 
-export function SalesUseCasesSection() {
+export function SalesUseCasesSection({saleData}) {
+  console.log("saleDatasaleData",saleData)
   const sectionRef = useRef<HTMLDivElement>(null);
   const useCases = useSalesUseCases();
+        const { t,language } = useTranslation();
+
 
   return (
     <div
@@ -137,20 +141,17 @@ export function SalesUseCasesSection() {
 
       <div className="container mx-auto px-6 xl:px-24 h-full flex items-center justify-center ">
         {/* Use Cases Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 w-full">
-          {useCases.map((useCase, index) => (
-            <UseCaseCard key={useCase.id} useCase={useCase} index={index} />
+
+        {
+           saleData.useCasesList  &&  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 w-full">
+          
+            
+          
+          {saleData.useCasesList.map((useCase, index) => (
+            <UseCaseCard key={index+1} useCase={useCase} index={index} language={language} />
           ))}
         </div>
-
-        {/* Bottom Divider */}
-        {/* <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
-          className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#2BCC07] to-transparent mt-20 lg:mt-2 origin-center"
-        /> */}
+        }
       </div>
     </div>
   );
