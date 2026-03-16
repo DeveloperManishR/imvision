@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { handleImage } from "@/lib/config";
 
 const FALLBACK_IMAGES = [
   "https://images.unsplash.com/photo-1441986300917-64674bd600d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
@@ -43,11 +44,7 @@ function useNormalizedServices(saleData: any): Service[] {
     features: (item.features ?? []).map(
       (f) => f[language] ?? f.en ?? ""
     ),
-    // Use the image from the API if it's a real URL, otherwise fall back
-    image:
-      item.image && item.image.startsWith("https://images.unsplash")
-        ? item.image
-        : FALLBACK_IMAGES[i % FALLBACK_IMAGES.length],
+    image:item?.image,
   }));
 }
 
@@ -63,6 +60,8 @@ function ServiceSection({
 
   const isEven = index % 2 === 0;
 
+  console.log("serviceservice",service)
+
   return (
     <div ref={containerRef} className="relative w-full">
       <div className="container mx-auto px-6 lg:px-24 h-full overflow-hidden">
@@ -77,7 +76,7 @@ function ServiceSection({
           >
             <div className="relative overflow-hidden max-h-[140px] md:max-h-[320px]">
               <motion.img
-                src={service.image}
+                src={handleImage(service.image)}
                 alt={service.title}
                 className="w-full h-auto object-cover"
                 whileInView={{ scale: 1 }}

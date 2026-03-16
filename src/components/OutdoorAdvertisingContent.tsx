@@ -1,6 +1,6 @@
 "use client";
-import { motion } from 'motion/react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { motion } from "motion/react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function OutdoorAdvertisingContent() {
   return (
@@ -28,10 +28,10 @@ export function OutdoorAdvertisingContent() {
           <p
             className="text-white/10 text-center"
             style={{
-              fontSize: 'clamp(3rem, 9vw, 10rem)',
+              fontSize: "clamp(3rem, 9vw, 10rem)",
               fontWeight: 300,
               lineHeight: 1.2,
-              letterSpacing: '-0.02em',
+              letterSpacing: "-0.02em",
             }}
           >
             Commanding
@@ -39,10 +39,10 @@ export function OutdoorAdvertisingContent() {
           <p
             className="text-[#2BCC07]/10 text-center"
             style={{
-              fontSize: 'clamp(3rem, 9vw, 10rem)',
+              fontSize: "clamp(3rem, 9vw, 10rem)",
               fontWeight: 300,
               lineHeight: 1.2,
-              letterSpacing: '-0.02em',
+              letterSpacing: "-0.02em",
             }}
           >
             Attention Everywhere
@@ -63,7 +63,7 @@ export function OutdoorAdvertisingContent() {
             transition={{ duration: 1.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#2BCC07] to-transparent origin-center"
           />
-          
+
           {/* Bottom border */}
           <motion.div
             initial={{ scaleX: 0 }}
@@ -71,7 +71,7 @@ export function OutdoorAdvertisingContent() {
             transition={{ duration: 1.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#2BCC07] to-transparent origin-center"
           />
-          
+
           {/* Left border */}
           <motion.div
             initial={{ scaleY: 0 }}
@@ -79,7 +79,7 @@ export function OutdoorAdvertisingContent() {
             transition={{ duration: 1.5, delay: 1, ease: [0.22, 1, 0.36, 1] }}
             className="absolute top-0 bottom-0 left-0 w-[1px] bg-gradient-to-b from-transparent via-[#2BCC07] to-transparent origin-center"
           />
-          
+
           {/* Right border */}
           <motion.div
             initial={{ scaleY: 0 }}
@@ -87,7 +87,7 @@ export function OutdoorAdvertisingContent() {
             transition={{ duration: 1.5, delay: 1, ease: [0.22, 1, 0.36, 1] }}
             className="absolute top-0 bottom-0 right-0 w-[1px] bg-gradient-to-b from-transparent via-[#2BCC07] to-transparent origin-center"
           />
-          
+
           {/* Corner accents */}
           <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-[#2BCC07]" />
           <div className="absolute top-0 right-0 w-32 h-32 border-r-2 border-t-2 border-[#2BCC07]" />
@@ -106,18 +106,25 @@ export function OutdoorAdvertisingContent() {
             <div className="inline-block relative">
               <p
                 className="text-[#2BCC07] tracking-[0.4em] uppercase"
-                style={{ fontSize: 'clamp(0.75rem, 1vw, 0.875rem)', fontWeight: 400 }}
+                style={{
+                  fontSize: "clamp(0.75rem, 1vw, 0.875rem)",
+                  fontWeight: 400,
+                }}
               >
                 OUTDOOR ADVERTISING
               </p>
-              
+
               {/* Animated underline */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 1,
+                  delay: 0.7,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="absolute -bottom-2 left-0 right-0 h-[1px] bg-[#2BCC07]"
-                style={{ transformOrigin: 'center' }}
+                style={{ transformOrigin: "center" }}
               />
             </div>
           </motion.div>
@@ -130,23 +137,23 @@ export function OutdoorAdvertisingContent() {
               transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="text-white leading-[1.05]"
               style={{
-                fontSize: 'clamp(3rem, 7.5vw, 8.5rem)',
+                fontSize: "clamp(3rem, 7.5vw, 8.5rem)",
                 fontWeight: 300,
-                letterSpacing: '-0.03em',
+                letterSpacing: "-0.03em",
               }}
             >
               Commanding
             </motion.h1>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="relative inline-block"
               style={{
-                fontSize: 'clamp(3rem, 7.5vw, 8.5rem)',
+                fontSize: "clamp(3rem, 7.5vw, 8.5rem)",
                 fontWeight: 300,
-                letterSpacing: '-0.03em',
+                letterSpacing: "-0.03em",
               }}
             >
               <span className="text-[#2BCC07]">Attention Everywhere</span>
@@ -163,13 +170,14 @@ export function OutdoorAdvertisingContent() {
             <p
               className="text-white/85"
               style={{
-                fontSize: 'clamp(1rem, 1.65vw, 1.375rem)',
+                fontSize: "clamp(1rem, 1.65vw, 1.375rem)",
                 fontWeight: 300,
                 lineHeight: 1.75,
               }}
             >
-              A major outdoor advertising network partnered with us to revolutionize their billboard 
-              infrastructure with dynamic LED displays that deliver powerful, attention-grabbing campaigns 
+              A major outdoor advertising network partnered with us to
+              revolutionize their billboard infrastructure with dynamic LED
+              displays that deliver powerful, attention-grabbing campaigns
               across high-traffic locations.
             </p>
           </motion.div>
@@ -189,7 +197,7 @@ export function OutdoorAdvertisingContent() {
           <div
             className="text-white/5"
             style={{
-              fontSize: 'clamp(10rem, 20vw, 25rem)',
+              fontSize: "clamp(10rem, 20vw, 25rem)",
               fontWeight: 300,
               lineHeight: 1,
             }}
@@ -210,11 +218,14 @@ export function OutdoorAdvertisingContent() {
             <div className="inline-block relative">
               <p
                 className="text-[#2BCC07] tracking-[0.4em] uppercase"
-                style={{ fontSize: 'clamp(0.75rem, 1vw, 0.875rem)', fontWeight: 400 }}
+                style={{
+                  fontSize: "clamp(0.75rem, 1vw, 0.875rem)",
+                  fontWeight: 400,
+                }}
               >
                 OUTDOOR ADVERTISING
               </p>
-              
+
               {/* Animated underline */}
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -222,7 +233,7 @@ export function OutdoorAdvertisingContent() {
                 transition={{ duration: 1, delay: 0.5 }}
                 viewport={{ once: true }}
                 className="absolute -bottom-2 left-0 right-0 h-[1px] bg-[#2BCC07]"
-                style={{ transformOrigin: 'center' }}
+                style={{ transformOrigin: "center" }}
               />
             </div>
           </motion.div>
@@ -236,14 +247,14 @@ export function OutdoorAdvertisingContent() {
               viewport={{ once: true }}
               className="text-white leading-[1.05]"
               style={{
-                fontSize: 'clamp(3rem, 7vw, 8rem)',
+                fontSize: "clamp(3rem, 7vw, 8rem)",
                 fontWeight: 300,
-                letterSpacing: '-0.03em',
+                letterSpacing: "-0.03em",
               }}
             >
               Transforming
             </motion.h2>
-            
+
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -251,9 +262,9 @@ export function OutdoorAdvertisingContent() {
               viewport={{ once: true }}
               className="text-[#2BCC07] leading-[1.05]"
               style={{
-                fontSize: 'clamp(3rem, 7vw, 8rem)',
+                fontSize: "clamp(3rem, 7vw, 8rem)",
                 fontWeight: 300,
-                letterSpacing: '-0.03em',
+                letterSpacing: "-0.03em",
               }}
             >
               Urban Landscapes
@@ -271,14 +282,15 @@ export function OutdoorAdvertisingContent() {
             <p
               className="text-white/70"
               style={{
-                fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+                fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
                 fontWeight: 300,
                 lineHeight: 1.8,
               }}
             >
-              Our client, a leading outdoor media company, sought to modernize their advertising 
-              infrastructure across major metropolitan areas. They needed cutting-edge digital solutions 
-              that could deliver dynamic content and maximize advertiser ROI in premium locations.
+              Our client, a leading outdoor media company, sought to modernize
+              their advertising infrastructure across major metropolitan areas.
+              They needed cutting-edge digital solutions that could deliver
+              dynamic content and maximize advertiser ROI in premium locations.
             </p>
           </motion.div>
         </div>
@@ -290,7 +302,7 @@ export function OutdoorAdvertisingContent() {
         <div className="absolute inset-0 flex">
           {/* Left side - Image */}
           <motion.div
-            initial={{ x: '-100%' }}
+            initial={{ x: "-100%" }}
             whileInView={{ x: 0 }}
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
@@ -306,7 +318,7 @@ export function OutdoorAdvertisingContent() {
 
           {/* Right side - Content */}
           <motion.div
-            initial={{ x: '100%' }}
+            initial={{ x: "100%" }}
             whileInView={{ x: 0 }}
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
@@ -321,7 +333,7 @@ export function OutdoorAdvertisingContent() {
                 viewport={{ once: true }}
                 className="absolute top-12 right-12 text-[#2BCC07] pointer-events-none"
                 style={{
-                  fontSize: 'clamp(8rem, 15vw, 18rem)',
+                  fontSize: "clamp(8rem, 15vw, 18rem)",
                   fontWeight: 300,
                   lineHeight: 1,
                 }}
@@ -341,7 +353,10 @@ export function OutdoorAdvertisingContent() {
                   <div className="w-12 h-[1px] bg-[#2BCC07]" />
                   <p
                     className="text-[#2BCC07] tracking-[0.3em] uppercase"
-                    style={{ fontSize: 'clamp(0.75rem, 1vw, 0.875rem)', fontWeight: 400 }}
+                    style={{
+                      fontSize: "clamp(0.75rem, 1vw, 0.875rem)",
+                      fontWeight: 400,
+                    }}
                   >
                     Digital Billboards
                   </p>
@@ -356,10 +371,10 @@ export function OutdoorAdvertisingContent() {
                 viewport={{ once: true }}
                 className="text-white mb-10"
                 style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 5.5rem)',
+                  fontSize: "clamp(2.5rem, 5vw, 5.5rem)",
                   fontWeight: 300,
                   lineHeight: 1.1,
-                  letterSpacing: '-0.02em',
+                  letterSpacing: "-0.02em",
                 }}
               >
                 High-Brightness
@@ -375,13 +390,14 @@ export function OutdoorAdvertisingContent() {
                 viewport={{ once: true }}
                 className="text-white/75 mb-12"
                 style={{
-                  fontSize: 'clamp(1rem, 1.35vw, 1.125rem)',
+                  fontSize: "clamp(1rem, 1.35vw, 1.125rem)",
                   fontWeight: 300,
                   lineHeight: 1.8,
                 }}
               >
-                We deployed ultra-bright LED billboards optimized for 24/7 outdoor visibility, delivering 
-                stunning clarity in any lighting condition and enabling dynamic, programmatic content delivery 
+                We deployed ultra-bright LED billboards optimized for 24/7
+                outdoor visibility, delivering stunning clarity in any lighting
+                condition and enabling dynamic, programmatic content delivery
                 across entire advertising networks.
               </motion.p>
 
@@ -394,9 +410,9 @@ export function OutdoorAdvertisingContent() {
                 className="space-y-4"
               >
                 {[
-                  'Weather-resistant construction',
-                  'Programmatic ad integration',
-                  'Real-time content updates',
+                  "Weather-resistant construction",
+                  "Programmatic ad integration",
+                  "Real-time content updates",
                 ].map((feature, index) => (
                   <motion.div
                     key={index}
@@ -410,7 +426,7 @@ export function OutdoorAdvertisingContent() {
                     <p
                       className="text-white/60"
                       style={{
-                        fontSize: 'clamp(0.875rem, 1.15vw, 1rem)',
+                        fontSize: "clamp(0.875rem, 1.15vw, 1rem)",
                         fontWeight: 300,
                       }}
                     >
@@ -451,11 +467,11 @@ export function OutdoorAdvertisingContent() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
                 className="text-[#2BCC07] mb-6 tracking-[0.25em] uppercase"
-                style={{ fontSize: 'clamp(0.75rem, 1vw, 0.875rem)' }}
+                style={{ fontSize: "clamp(0.75rem, 1vw, 0.875rem)" }}
               >
                 Transit Advertising
               </motion.p>
-              
+
               <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -463,17 +479,17 @@ export function OutdoorAdvertisingContent() {
                 viewport={{ once: true }}
                 className="text-white mb-8"
                 style={{
-                  fontSize: 'clamp(3rem, 6vw, 7rem)',
+                  fontSize: "clamp(3rem, 6vw, 7rem)",
                   fontWeight: 300,
                   lineHeight: 1.1,
-                  letterSpacing: '-0.03em',
+                  letterSpacing: "-0.03em",
                 }}
               >
                 Strategic
                 <br />
                 <span className="text-[#2BCC07]">Placement</span>
               </motion.h2>
-              
+
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -481,14 +497,15 @@ export function OutdoorAdvertisingContent() {
                 viewport={{ once: true }}
                 className="text-white/80"
                 style={{
-                  fontSize: 'clamp(1rem, 1.35vw, 1.125rem)',
+                  fontSize: "clamp(1rem, 1.35vw, 1.125rem)",
                   fontWeight: 300,
                   lineHeight: 1.7,
                 }}
               >
-                Digital displays deployed in transit hubs, airports, and along major highways capture 
-                audiences during high-attention moments, delivering targeted campaigns to millions of 
-                commuters and travelers daily.
+                Digital displays deployed in transit hubs, airports, and along
+                major highways capture audiences during high-attention moments,
+                delivering targeted campaigns to millions of commuters and
+                travelers daily.
               </motion.p>
             </div>
           </motion.div>
@@ -507,7 +524,7 @@ export function OutdoorAdvertisingContent() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/30" />
-            
+
             {/* Floating number */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -516,9 +533,9 @@ export function OutdoorAdvertisingContent() {
               viewport={{ once: true }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               style={{
-                fontSize: 'clamp(8rem, 15vw, 20rem)',
+                fontSize: "clamp(8rem, 15vw, 20rem)",
                 fontWeight: 300,
-                color: '#2BCC07',
+                color: "#2BCC07",
                 lineHeight: 1,
               }}
             >
@@ -538,7 +555,10 @@ export function OutdoorAdvertisingContent() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
             className="text-[#2BCC07] tracking-[0.4em] uppercase mb-12"
-            style={{ fontSize: 'clamp(0.75rem, 1vw, 0.875rem)', fontWeight: 400 }}
+            style={{
+              fontSize: "clamp(0.75rem, 1vw, 0.875rem)",
+              fontWeight: 400,
+            }}
           >
             Our Approach
           </motion.p>
@@ -549,10 +569,10 @@ export function OutdoorAdvertisingContent() {
             transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
             style={{
-              fontSize: 'clamp(2.5rem, 5vw, 5.5rem)',
+              fontSize: "clamp(2.5rem, 5vw, 5.5rem)",
               fontWeight: 300,
               lineHeight: 1.15,
-              letterSpacing: '-0.03em',
+              letterSpacing: "-0.03em",
             }}
           >
             <span className="text-white">Solutions designed to </span>
@@ -579,7 +599,7 @@ export function OutdoorAdvertisingContent() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80" />
-                
+
                 {/* Number overlay */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -588,7 +608,7 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="absolute top-8 right-8 text-[#2BCC07] pointer-events-none"
                   style={{
-                    fontSize: 'clamp(5rem, 10vw, 8rem)',
+                    fontSize: "clamp(5rem, 10vw, 8rem)",
                     fontWeight: 300,
                     lineHeight: 1,
                   }}
@@ -606,10 +626,10 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="text-white mb-6"
                   style={{
-                    fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                    fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                     fontWeight: 300,
                     lineHeight: 1.2,
-                    letterSpacing: '-0.02em',
+                    letterSpacing: "-0.02em",
                   }}
                 >
                   Maximize <span className="text-[#2BCC07]">visibility</span>
@@ -630,13 +650,14 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="text-white/70"
                   style={{
-                    fontSize: 'clamp(0.9375rem, 1.15vw, 1.0625rem)',
+                    fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)",
                     fontWeight: 300,
                     lineHeight: 1.7,
                   }}
                 >
-                  Capturing attention in high-traffic locations with brilliant, eye-catching displays that 
-                  ensure brand messages are impossible to miss.
+                  Capturing attention in high-traffic locations with brilliant,
+                  eye-catching displays that ensure brand messages are
+                  impossible to miss.
                 </motion.p>
               </div>
             </motion.div>
@@ -659,7 +680,7 @@ export function OutdoorAdvertisingContent() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80" />
-                
+
                 {/* Number overlay */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -668,7 +689,7 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="absolute top-8 right-8 text-[#2BCC07] pointer-events-none"
                   style={{
-                    fontSize: 'clamp(5rem, 10vw, 8rem)',
+                    fontSize: "clamp(5rem, 10vw, 8rem)",
                     fontWeight: 300,
                     lineHeight: 1,
                   }}
@@ -686,13 +707,14 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="text-white mb-6"
                   style={{
-                    fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                    fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                     fontWeight: 300,
                     lineHeight: 1.2,
-                    letterSpacing: '-0.02em',
+                    letterSpacing: "-0.02em",
                   }}
                 >
-                  Dynamic content <span className="text-[#2BCC07]">delivery</span>
+                  Dynamic content{" "}
+                  <span className="text-[#2BCC07]">delivery</span>
                 </motion.h3>
 
                 <motion.div
@@ -710,13 +732,14 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="text-white/70"
                   style={{
-                    fontSize: 'clamp(0.9375rem, 1.15vw, 1.0625rem)',
+                    fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)",
                     fontWeight: 300,
                     lineHeight: 1.7,
                   }}
                 >
-                  Enabling real-time content updates, dayparting strategies, and responsive campaigns that 
-                  adapt to audience behavior and environmental conditions.
+                  Enabling real-time content updates, dayparting strategies, and
+                  responsive campaigns that adapt to audience behavior and
+                  environmental conditions.
                 </motion.p>
               </div>
             </motion.div>
@@ -739,7 +762,7 @@ export function OutdoorAdvertisingContent() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80" />
-                
+
                 {/* Number overlay */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -748,7 +771,7 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="absolute top-8 right-8 text-[#2BCC07] pointer-events-none"
                   style={{
-                    fontSize: 'clamp(5rem, 10vw, 8rem)',
+                    fontSize: "clamp(5rem, 10vw, 8rem)",
                     fontWeight: 300,
                     lineHeight: 1,
                   }}
@@ -766,10 +789,10 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="text-white mb-6"
                   style={{
-                    fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                    fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                     fontWeight: 300,
                     lineHeight: 1.2,
-                    letterSpacing: '-0.02em',
+                    letterSpacing: "-0.02em",
                   }}
                 >
                   Reach wider <span className="text-[#2BCC07]">audiences</span>
@@ -790,13 +813,14 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="text-white/70"
                   style={{
-                    fontSize: 'clamp(0.9375rem, 1.15vw, 1.0625rem)',
+                    fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)",
                     fontWeight: 300,
                     lineHeight: 1.7,
                   }}
                 >
-                  Expanding brand reach through strategically placed networks that deliver millions of 
-                  impressions daily across diverse demographics and geographic markets.
+                  Expanding brand reach through strategically placed networks
+                  that deliver millions of impressions daily across diverse
+                  demographics and geographic markets.
                 </motion.p>
               </div>
             </motion.div>
@@ -825,7 +849,10 @@ export function OutdoorAdvertisingContent() {
               />
               <p
                 className="text-[#2BCC07] tracking-[0.4em] uppercase"
-                style={{ fontSize: 'clamp(0.75rem, 1vw, 0.875rem)', fontWeight: 400 }}
+                style={{
+                  fontSize: "clamp(0.75rem, 1vw, 0.875rem)",
+                  fontWeight: 400,
+                }}
               >
                 Results
               </p>
@@ -834,14 +861,18 @@ export function OutdoorAdvertisingContent() {
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 1.2,
+                delay: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               viewport={{ once: true }}
               className="text-white max-w-4xl"
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 5.5rem)',
+                fontSize: "clamp(2.5rem, 5vw, 5.5rem)",
                 fontWeight: 300,
                 lineHeight: 1.15,
-                letterSpacing: '-0.03em',
+                letterSpacing: "-0.03em",
               }}
             >
               Unprecedented reach and engagement
@@ -867,7 +898,7 @@ export function OutdoorAdvertisingContent() {
                   viewport={{ once: true }}
                   className="absolute -top-8 -left-4 text-[#2BCC07] pointer-events-none select-none"
                   style={{
-                    fontSize: 'clamp(10rem, 20vw, 16rem)',
+                    fontSize: "clamp(10rem, 20vw, 16rem)",
                     fontWeight: 300,
                     lineHeight: 1,
                   }}
@@ -883,10 +914,10 @@ export function OutdoorAdvertisingContent() {
                     viewport={{ once: true }}
                     className="text-[#2BCC07] mb-6"
                     style={{
-                      fontSize: 'clamp(5rem, 12vw, 10rem)',
+                      fontSize: "clamp(5rem, 12vw, 10rem)",
                       fontWeight: 300,
                       lineHeight: 0.9,
-                      letterSpacing: '-0.04em',
+                      letterSpacing: "-0.04em",
                     }}
                   >
                     +80%
@@ -899,7 +930,7 @@ export function OutdoorAdvertisingContent() {
                     viewport={{ once: true }}
                     className="text-white mb-6"
                     style={{
-                      fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
+                      fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
                       fontWeight: 300,
                       lineHeight: 1.3,
                     }}
@@ -914,13 +945,13 @@ export function OutdoorAdvertisingContent() {
                     viewport={{ once: true }}
                     className="text-white/60 max-w-xl"
                     style={{
-                      fontSize: 'clamp(0.9375rem, 1.15vw, 1.0625rem)',
+                      fontSize: "clamp(0.9375rem, 1.15vw, 1.0625rem)",
                       fontWeight: 300,
                       lineHeight: 1.7,
                     }}
                   >
-                    Premium digital inventory commanding higher CPMs and attracting top-tier brands 
-                    seeking maximum impact and reach.
+                    Premium digital inventory commanding higher CPMs and
+                    attracting top-tier brands seeking maximum impact and reach.
                   </motion.p>
                 </div>
               </div>
@@ -941,7 +972,7 @@ export function OutdoorAdvertisingContent() {
                 viewport={{ once: true }}
                 className="text-[#2BCC07] mb-4"
                 style={{
-                  fontSize: 'clamp(3rem, 6vw, 4.5rem)',
+                  fontSize: "clamp(3rem, 6vw, 4.5rem)",
                   fontWeight: 300,
                   lineHeight: 0.9,
                 }}
@@ -956,7 +987,7 @@ export function OutdoorAdvertisingContent() {
                 viewport={{ once: true }}
                 className="text-white mb-4"
                 style={{
-                  fontSize: 'clamp(1.125rem, 1.5vw, 1.375rem)',
+                  fontSize: "clamp(1.125rem, 1.5vw, 1.375rem)",
                   fontWeight: 300,
                   lineHeight: 1.3,
                 }}
@@ -971,12 +1002,13 @@ export function OutdoorAdvertisingContent() {
                 viewport={{ once: true }}
                 className="text-white/60"
                 style={{
-                  fontSize: 'clamp(0.875rem, 1vw, 0.9375rem)',
+                  fontSize: "clamp(0.875rem, 1vw, 0.9375rem)",
                   fontWeight: 300,
                   lineHeight: 1.6,
                 }}
               >
-                Massive audience reach across metropolitan areas with verified viewership metrics.
+                Massive audience reach across metropolitan areas with verified
+                viewership metrics.
               </motion.p>
             </motion.div>
           </div>
@@ -999,7 +1031,7 @@ export function OutdoorAdvertisingContent() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/70" />
-          
+
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
         </motion.div>
@@ -1018,19 +1050,26 @@ export function OutdoorAdvertisingContent() {
               <div className="inline-block relative">
                 <p
                   className="text-[#2BCC07] tracking-[0.4em] uppercase"
-                  style={{ fontSize: 'clamp(0.75rem, 1vw, 0.875rem)', fontWeight: 400 }}
+                  style={{
+                    fontSize: "clamp(0.75rem, 1vw, 0.875rem)",
+                    fontWeight: 400,
+                  }}
                 >
                   Start Your Project
                 </p>
-                
+
                 {/* Animated underline */}
                 <motion.div
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   viewport={{ once: true }}
                   className="absolute -bottom-2 left-0 right-0 h-[1px] bg-[#2BCC07]"
-                  style={{ transformOrigin: 'center' }}
+                  style={{ transformOrigin: "center" }}
                 />
               </div>
             </motion.div>
@@ -1039,14 +1078,18 @@ export function OutdoorAdvertisingContent() {
             <motion.h2
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 1.2,
+                delay: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               viewport={{ once: true }}
               className="text-white mb-8"
               style={{
-                fontSize: 'clamp(2.5rem, 6vw, 6.5rem)',
+                fontSize: "clamp(2.5rem, 6vw, 6.5rem)",
                 fontWeight: 300,
                 lineHeight: 1.1,
-                letterSpacing: '-0.03em',
+                letterSpacing: "-0.03em",
               }}
             >
               Ready to dominate your
@@ -1062,13 +1105,13 @@ export function OutdoorAdvertisingContent() {
               viewport={{ once: true }}
               className="text-white/80 mb-16 max-w-3xl mx-auto"
               style={{
-                fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+                fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
                 fontWeight: 300,
                 lineHeight: 1.7,
               }}
             >
-              Let's discuss how our outdoor LED display solutions can transform your advertising 
-              network and maximize campaign performance.
+              Let's discuss how our outdoor LED display solutions can transform
+              your advertising network and maximize campaign performance.
             </motion.p>
 
             {/* CTA Button */}
@@ -1087,19 +1130,19 @@ export function OutdoorAdvertisingContent() {
                 <div className="relative px-12 py-6 bg-white overflow-hidden">
                   {/* Hover effect */}
                   <motion.div
-                    initial={{ x: '-100%' }}
+                    initial={{ x: "-100%" }}
                     whileHover={{ x: 0 }}
                     transition={{ duration: 0.4 }}
                     className="absolute inset-0 bg-[#2BCC07]"
                   />
-                  
+
                   <span
                     className="relative z-10 text-black transition-colors duration-300"
                     style={{
-                      fontSize: 'clamp(1rem, 1.15vw, 1.125rem)',
+                      fontSize: "clamp(1rem, 1.15vw, 1.125rem)",
                       fontWeight: 400,
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
                     }}
                   >
                     Get in Touch
